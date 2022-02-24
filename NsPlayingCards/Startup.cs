@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using NsPlayingCards.Data;
 
 namespace NsPlayingCards
 {
@@ -24,6 +26,11 @@ namespace NsPlayingCards
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            
+
+            services.AddDbContext<NsPlayingCardsContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("NsPlayingCardsContext")));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
